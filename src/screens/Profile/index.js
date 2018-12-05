@@ -4,7 +4,7 @@ import moment from 'moment';
 import { View, Text, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
-import { getProfileUser, getServiceHistory, getOrderHistory } from '../../actions/profile';
+import { getProfileUser } from '../../actions/profile';
 import { logout } from '../../actions/auth';
 import { images, colors } from '../../utils/constants';
 
@@ -20,8 +20,6 @@ class ProfileScreen extends Component {
     async componentDidMount() {
         this.toggleLoading();
         await this.props.getProfileUser();
-        await this.props.getServiceHistory();
-        await this.props.getOrderHistory();
         this.toggleLoading();
     }
 
@@ -115,8 +113,6 @@ const mapStateToProps = ({ Profile }) => ({
 const mapDispatchToProps = {
     getProfileUser,
     logout,
-    getServiceHistory,
-    getOrderHistory,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
